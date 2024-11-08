@@ -13,7 +13,7 @@ password = os.getenv("POSTGRES_PASSWORD")
 host = "localhost"
 
 # Connect to the database
-conn = psycopg2.connect(dbname=dbname, host=host)
+conn = psycopg2.connect(dbname=dbname, user=user, password=password, host=host)
 cur = conn.cursor()
 
 

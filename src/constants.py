@@ -13,10 +13,10 @@ URL_API = "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/rappe
 URL_API = URL_API.format(MAX_LIMIT, "{}", "{}")
 
 # POSTGRES PARAMS
-user_name = os.getenv("POSTGRES_DOCKER_USER", "localhost")
+user_name = os.getenv("POSTGRES_DOCKER_USER")
 POSTGRES_URL = f"jdbc:postgresql://{user_name}:5432/postgres"
 POSTGRES_PROPERTIES = {
-    "user": "postgres",
+    "user": "admin",
     "password": os.getenv("POSTGRES_PASSWORD"),
     "driver": "org.postgresql.Driver",
 }
