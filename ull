@@ -1,0 +1,52 @@
+[
+    {
+        "Name": "airflow-kafka",
+        "Id": "d2e23ad33c32653dcb584c3111900c0d36d0dd09eef95b005b7f7107e3cf7827",
+        "Created": "2024-11-08T12:22:59.241688675Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "4c9c59e02ff77677b1d61ec850dd4b64924246df40b97bdad9df0d9585a2d76c": {
+                "Name": "kafka-ui-1",
+                "EndpointID": "3b100f52a55cba70da9d43ac74e9edd46ee8ff475d43015a249e8f8bce56afa2",
+                "MacAddress": "02:42:ac:14:00:04",
+                "IPv4Address": "172.20.0.4/16",
+                "IPv6Address": ""
+            },
+            "64cffdca5e4c5580e2bd143744afc8186e6e07a88f0294379f14deba3c661091": {
+                "Name": "infrastructure-docker-proxy-1",
+                "EndpointID": "5f5501f1afc499251760834861308402713fc61cca40f6313acbdddcc22d72ec",
+                "MacAddress": "02:42:ac:14:00:02",
+                "IPv4Address": "172.20.0.2/16",
+                "IPv6Address": ""
+            },
+            "e78718fbc439f0cfdfb257e2acdc28d2da4d249efa50e8577326e8056edecf75": {
+                "Name": "infrastructure-kafka-1",
+                "EndpointID": "3eee48d59eeff6c33fe57b200da3e2b87c072051046b0d8662b5ab1a33d5e232",
+                "MacAddress": "02:42:ac:14:00:03",
+                "IPv4Address": "172.20.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
