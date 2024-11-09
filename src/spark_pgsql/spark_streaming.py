@@ -20,7 +20,6 @@ def create_spark_session() -> SparkSession:
         .config(
             "spark.jars.packages",
             "org.postgresql:postgresql:42.5.4,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0",
-
         )
         .getOrCreate()
     )
@@ -77,17 +76,24 @@ def start_streaming(df_parsed, spark):
     unique_column = "reference_fiche"
 
     logging.info("Start streaming ...")
-    query = df_parsed.writeStream.foreachBatch(
-        lambda batch_df, _: (
-            batch_df.join(
-                existing_data_df, batch_df[unique_column] == existing_data_df[unique_column], "leftanti"
-            )
-            .write.jdbc(
-                POSTGRES_URL, "rappel_conso_table", "append", properties=POSTGRES_PROPERTIES
+    query = (
+        df_parsed.writeStream.foreachBatch(
+            lambda batch_df, _: (
+                batch_df.join(
+                    existing_data_df,
+                    batch_df[unique_column] == existing_data_df[unique_column],
+                    "leftanti",
+                ).write.jdbc(
+                    POSTGRES_URL,
+                    "rappel_conso_table",
+                    "append",
+                    properties=POSTGRES_PROPERTIES,
+                )
             )
         )
-    ).trigger(once=True) \
+        .trigger(once=True)
         .start()
+    )
 
     return query.awaitTermination()
 

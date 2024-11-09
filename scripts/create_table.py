@@ -2,7 +2,7 @@ import sys
 import os
 import psycopg2
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.constants import DB_FIELDS
 
@@ -21,7 +21,7 @@ def try_execute_sql(sql: str):
     try:
         cur.execute(sql)
         conn.commit()
-        print(f"Executed table creation successfully")
+        print("Executed table creation successfully")
     except Exception as e:
         print(f"Couldn't execute table creation due to exception: {e}")
         conn.rollback()
