@@ -14,12 +14,16 @@ URL_API = URL_API.format(MAX_LIMIT, "{}", "{}")
 
 # POSTGRES PARAMS
 user_name = os.getenv("POSTGRES_DOCKER_USER")
+print(f"constants user name: {user_name}")
 POSTGRES_URL = f"jdbc:postgresql://{user_name}:5432/postgres"
+print(f"Postgres url : {POSTGRES_URL}")
 POSTGRES_PROPERTIES = {
     "user": "admin",
     "password": os.getenv("POSTGRES_PASSWORD"),
     "driver": "org.postgresql.Driver",
 }
+
+print(f"Postgres properties {POSTGRES_PROPERTIES}")
 
 NEW_COLUMNS = [
     "risques_pour_le_consommateur",

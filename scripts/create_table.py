@@ -8,7 +8,7 @@ from src.constants import DB_FIELDS
 
 # Database connection parameters
 dbname = "postgres"
-user = "root"
+user = "admin"
 password = os.getenv("POSTGRES_PASSWORD")
 host = "localhost"
 
