@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8438a82b-5934-4c4d-845f-51b1ec68694b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infrastructure/spark-dockerfile.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/airflow-docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +45,12 @@
     "Python.spark_streaming.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "feature/infra",
-    "last_opened_file_path": "/Users/xaviervanausloos/projects/ldi_kafka_airflow_pg_pyspark"
+    "last_opened_file_path": "/Users/xaviervanausloos/projects/ldi_kafka_airflow_pg_pyspark/infrastructure"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/infrastructure" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>

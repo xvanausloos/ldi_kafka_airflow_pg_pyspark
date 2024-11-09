@@ -35,3 +35,12 @@ Run from root folder:
 This command will build the image rappel-conso/spark:latest. 
 This image includes everything needed to run our Spark job 
 and will be used by Airflow’s DockerOperator to execute the job. 
+
+### Airflow
+In our system, Airflow is used to automate the data flow from streaming 
+with Kafka to processing with Spark.
+
+#### Airflow infra 
+Run `docker-compose-airflow.yaml
+
+
