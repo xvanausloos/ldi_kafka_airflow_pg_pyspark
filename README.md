@@ -25,3 +25,13 @@ Run `make make create-postgresql-infra`
 
 ### Create and populate PG table
 Run `python scripts/create_table.py`
+
+### Run Docker for creating infra for Spark job
+Run from root folder:
+`docker build -f infrastructure/spark-dockerfile.yaml
+-t rappel-conso/spark:latest 
+--build-arg POSTGRES_PASSWORD=$POSTGRES_PASSWORD  .`
+
+This command will build the image rappel-conso/spark:latest. 
+This image includes everything needed to run our Spark job 
+and will be used by Airflow’s DockerOperator to execute the job. 
