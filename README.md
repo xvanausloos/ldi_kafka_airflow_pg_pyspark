@@ -44,7 +44,13 @@ with Kafka to processing with Spark.
 Run `echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_PROJ_DIR=\"./airflow_resources\"" > .env`
 It creates a `.env` file with env variables for Airflow.
 Create a folder `airflow_resources`
-Run `make create-airflow-infra`
+Run `make create-airflow-infra
+
+#### Airflow UI
+Connect to `http://localhost:8080`
+Credentials are: airflow/aiflow 
+
+
 
 
 
