@@ -41,7 +41,6 @@
 #
 # Feel free to modify this file to suit your needs.
 ---
-version: '3.8'
 x-airflow-common:
   &airflow-common
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
@@ -50,7 +49,7 @@ x-airflow-common:
   build:
     context: .
     dockerfile: ./airflow_resources/Dockerfile
-  image: de-project/airflow:latest
+  image: apache/airflow:2.5.0
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
