@@ -24,7 +24,6 @@ with DAG(
     schedule_interval=timedelta(days=1),
     catchup=False,
 ) as dag:
-
     kafka_stream_task = PythonOperator(
         task_id="kafka_data_stream",
         python_callable=stream,
@@ -37,11 +36,10 @@ with DAG(
         api_version="auto",
         auto_remove=True,
         command="./bin/spark-submit --master local[*] --packages org.postgresql:postgresql:42.5.4,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0 ./spark_streaming.py",
-        docker_url='tcp://docker-proxy:2375',
-        environment={'SPARK_LOCAL_HOSTNAME': 'localhost'},
+        docker_url="tcp://docker-proxy:2375",
+        environment={"SPARK_LOCAL_HOSTNAME": "localhost"},
         network_mode="airflow-kafka",
         dag=dag,
     )
-
 
     kafka_stream_task >> spark_stream_task
