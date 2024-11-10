@@ -13,4 +13,4 @@ create-postgresql-infra:
 	docker-compose -f infrastructure/postgres14-docker-compose.yaml up -d
 
 create-airflow-infra:
-	docker-compose -f infrastructure/airflow-docker-compose.yaml up -d
+	docker compose -f infrastructure/airflow-docker-compose.yaml up -d
