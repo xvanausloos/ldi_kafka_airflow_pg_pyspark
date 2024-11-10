@@ -50,6 +50,9 @@ Run `make create-airflow-infra
 Connect to `http://localhost:8080`
 Credentials are: airflow/aiflow 
 
+## Pipeline
+Check Airflow DAG : `kafka_spark_dag`
+
 
 
 
