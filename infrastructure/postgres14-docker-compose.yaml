@@ -4,11 +4,12 @@ services:
     image: postgres
     hostname: localhost
     ports:
-      - "5432:5432"
+      - "5433:5433"
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: root
       POSTGRES_DB: test_db
+      PGPORT: 5433
     volumes:
       - postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
