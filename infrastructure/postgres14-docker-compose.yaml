@@ -1,6 +1,6 @@
 services:
   postgres:
-    container_name: container-pg
+    container_name: container-pg-ldi
     image: postgres
     hostname: localhost
     ports:
