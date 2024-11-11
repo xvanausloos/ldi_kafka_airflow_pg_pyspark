@@ -14,7 +14,7 @@ default_args = {
     "owner": "airflow",
     "start_date": start_date,
     "retries": 1,  # number of retries before failing the task
-    "retry_delay": timedelta(seconds=5),
+    "retry_delay": timedelta(seconds=2),
 }
 
 
