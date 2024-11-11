@@ -7,3 +7,4 @@ airflow_resources/dags/__pycache__
 # Byte-compiled / optimized / DLL files
 **/__pycache__/
 *.py[cod]
+src/kafka_client/__pycache__/

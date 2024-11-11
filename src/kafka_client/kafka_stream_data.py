@@ -36,7 +36,7 @@ def update_last_processed_file(data: List[dict]):
     on the field date_de_publication, we set the new last_processed day to the latest timestamp minus one day.
     """
     publication_dates_as_timestamps = [
-        datetime.datetime.strptime(row["date_de_publication"], "%Y-%m-%d")
+        datetime.datetime.strptime(row["date_de_publication"], "%Y-%m-%dT%H:%M:%S%z")
         for row in data
     ]
     last_processed = max(publication_dates_as_timestamps) - datetime.timedelta(days=1)
