@@ -60,7 +60,7 @@ Credentials are: airflow/aiflow
 ## Pipeline
 Check Airflow DAG : `kafka_spark_dag`
 
+## Addition of unit tests
+Example: https://medium.com/@sharadblog/unit-testing-pyspark-kafka-streams-14746ca28dfe
 
-
-
-
+See `kafka_pyspark_delta.py`
