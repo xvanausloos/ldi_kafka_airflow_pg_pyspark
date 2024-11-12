@@ -21,13 +21,12 @@ visit the kafka-ui at http://localhost:8000/
 Thanks to UI create a topic
 
 ### Install Postgres locally (without Docker)
-##### > DEPRECATEDRun `make make create-postgresql-infra`
 see dedicated LDI doc.
 
 connect to local PG instance: psql -U xaviervanausloos
 
 ### Create and populate PG table
-Run `python scripts/create_table.py`
+Run `python scripts/create_table.py` or use `make create-postgres-table`
 
 ### Run Docker for creating infra for Spark job
 Run from root folder:

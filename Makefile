@@ -9,8 +9,8 @@ create-kafka-infra:
 	docker network inspect airflow-kafka 2>&1>$null || docker network create airflow-kafka
 	docker-compose -f infrastructure/kafka-docker-compose.yaml up -d
 
-create-postgresql-infra:
-	docker-compose -f infrastructure/postgres14-docker-compose.yaml up -d
+create-postgresql-table:
+	python scripts/create_table.py
 
 create-airflow-infra:
 	cd airflow_resources && docker build -t airflow-ldi:latest .

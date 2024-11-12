@@ -9,6 +9,6 @@ RUN pwd
 COPY ./../src/spark_pgsql/spark_streaming.py ./spark_streaming.py
 COPY ./../src/constants.py ./src/constants.py
 
-ENV POSTGRES_DOCKER_USER=host.docker.internal
+ENV POSTGRES_HOST=host.docker.internal
 ARG POSTGRES_PASSWORD
 ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
