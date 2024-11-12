@@ -13,7 +13,7 @@ URL_API = "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/rappe
 URL_API = URL_API.format(MAX_LIMIT, "{}", "{}")
 
 # POSTGRES PARAMS
-#user_name = os.getenv("POSTGRES_USER")
+# user_name = os.getenv("POSTGRES_USER")
 user_name = "xaviervanausloos"
 password = os.getenv("POSTGRES_PASSWORD")
 print(f"constants user name: {user_name}")

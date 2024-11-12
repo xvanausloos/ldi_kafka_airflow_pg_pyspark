@@ -9,7 +9,7 @@ from src.constants import DB_FIELDS
 # Database connection parameters
 dbname = "postgres"
 user = "xaviervanausloos"
-#password = os.getenv("POSTGRES_PASSWORD")
+# password = os.getenv("POSTGRES_PASSWORD")
 host = "localhost"
 
 # Connect to the database
