@@ -2,3 +2,9 @@ infrastructure/kafka/data
 ull
 .idea
 infrastructure/logs
+.DS_Store
+airflow_resources/dags/__pycache__
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+*.py[cod]
+src/kafka_client/__pycache__/

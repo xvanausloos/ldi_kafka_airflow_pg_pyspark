@@ -1,4 +1,4 @@
-# Licensed to the Apache Software Foundation (ASF) under one
+  # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
 # regarding copyright ownership.  The ASF licenses this file
@@ -49,7 +49,7 @@ x-airflow-common:
   build:
     context: .
     dockerfile: ./airflow_resources/Dockerfile
-  image: apache/airflow:2.7.3
+  image: airflow-ldi:latest
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -69,11 +69,11 @@ x-airflow-common:
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
-    - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
+    - ${AIRFLOW_PROJ_DIR:-..}/airflow_resources/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
-    - ./src:/opt/airflow/dags/src
-    - ./data/last_processed.json:/opt/airflow/data/last_processed.json
+    - ../src:/opt/airflow/dags/src
+    - ../data/last_processed.json:/opt/airflow/data/last_processed.json
   user: "${AIRFLOW_UID:-50000}:0"
   networks:
     - airflow-kafka

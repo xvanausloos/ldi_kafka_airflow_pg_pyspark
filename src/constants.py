@@ -13,13 +13,15 @@ URL_API = "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/rappe
 URL_API = URL_API.format(MAX_LIMIT, "{}", "{}")
 
 # POSTGRES PARAMS
-user_name = os.getenv("POSTGRES_DOCKER_USER")
+# user_name = os.getenv("POSTGRES_USER")
+user_name = "xaviervanausloos"
+password = os.getenv("POSTGRES_PASSWORD")
 print(f"constants user name: {user_name}")
-POSTGRES_URL = f"jdbc:postgresql://{user_name}:5432/postgres"
+POSTGRES_URL = "jdbc:postgresql://host.docker.internal:5432/postgres"
 print(f"Postgres url : {POSTGRES_URL}")
 POSTGRES_PROPERTIES = {
-    "user": "admin",
-    "password": os.getenv("POSTGRES_PASSWORD"),
+    "user": user_name,
+    "password": password,
     "driver": "org.postgresql.Driver",
 }
 

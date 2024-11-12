@@ -20,11 +20,13 @@ visit the kafka-ui at http://localhost:8000/
 ### Create a Kafka topic 
 Thanks to UI create a topic
 
-### Postgres setup thanks to Docker
-Run `make make create-postgresql-infra`
+### Install Postgres locally (without Docker)
+see dedicated LDI doc.
+Check connection to PGADMIN:
+connect to local PG instance: psql -U xaviervanausloos
 
 ### Create and populate PG table
-Run `python scripts/create_table.py`
+Run `python scripts/create_table.py` or use `make create-postgres-table`
 
 ### Run Docker for creating infra for Spark job
 Run from root folder:
@@ -44,11 +46,19 @@ with Kafka to processing with Spark.
 Run `echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_PROJ_DIR=\"./airflow_resources\"" > .env`
 It creates a `.env` file with env variables for Airflow.
 Create a folder `airflow_resources`
-Run `make create-airflow-infra
+
+Go in `airflow_resources` folder:
+run `docker build -t airflow-ldi:1.0 .`
+It will create locally the Docker images customized by LDI.
+
+Run `make create-airflow-infra`
 
 #### Airflow UI
 Connect to `http://localhost:8080`
 Credentials are: airflow/aiflow 
+
+## Pipeline
+Check Airflow DAG : `kafka_spark_dag`
 
 
 
