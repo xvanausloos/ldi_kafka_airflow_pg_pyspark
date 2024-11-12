@@ -22,7 +22,7 @@ Thanks to UI create a topic
 
 ### Install Postgres locally (without Docker)
 see dedicated LDI doc.
-
+Check connection to PGADMIN:
 connect to local PG instance: psql -U xaviervanausloos
 
 ### Create and populate PG table
