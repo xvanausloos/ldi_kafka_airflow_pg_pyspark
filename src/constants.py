@@ -17,7 +17,7 @@ URL_API = URL_API.format(MAX_LIMIT, "{}", "{}")
 user_name = "xaviervanausloos"
 password = os.getenv("POSTGRES_PASSWORD")
 print(f"constants user name: {user_name}")
-POSTGRES_URL = f"jdbc:postgresql://host.docker.internal:5432/postgres"
+POSTGRES_URL = "jdbc:postgresql://host.docker.internal:5432/postgres"
 print(f"Postgres url : {POSTGRES_URL}")
 POSTGRES_PROPERTIES = {
     "user": user_name,
