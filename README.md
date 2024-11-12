@@ -20,8 +20,11 @@ visit the kafka-ui at http://localhost:8000/
 ### Create a Kafka topic 
 Thanks to UI create a topic
 
-### Postgres setup thanks to Docker
-Run `make make create-postgresql-infra`
+### Install Postgres locally (without Docker)
+##### > DEPRECATEDRun `make make create-postgresql-infra`
+see dedicated LDI doc.
+
+connect to local PG instance: psql -U xaviervanausloos
 
 ### Create and populate PG table
 Run `python scripts/create_table.py`
