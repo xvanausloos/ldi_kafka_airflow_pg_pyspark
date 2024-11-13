@@ -21,8 +21,6 @@ kafka_stream = (
 )
 logging.info(f"Kafka read the stream in topic:{topic_name}")
 
-
-
 # Transform the Kafka stream (e.g., extract the value and cast to String)
 kafka_values = kafka_stream.selectExpr("CAST(value AS STRING)")
 
