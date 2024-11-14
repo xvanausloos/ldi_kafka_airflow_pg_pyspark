@@ -1,6 +1,7 @@
 # PySpark unit tests sample
 
 ## Prerequisites for running `kafka_stream_delta.py` using Docker
+- Spark version 3.3 max
 - Kafka instance in Docker.
 - Check you have access to Kafka UI: `http://localhost:8000/ui/clusters/local/all-topics/topic1`
 
