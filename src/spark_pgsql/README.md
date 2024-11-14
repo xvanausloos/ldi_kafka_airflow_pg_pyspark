@@ -1,4 +1,5 @@
 # PySpark unit tests sample
+Inspired from: https://medium.com/@sharadblog/unit-testing-pyspark-kafka-streams-14746ca28dfe
 
 ## Prerequisites for running `kafka_stream_delta.py` using Docker
 - Spark version 3.3 max
