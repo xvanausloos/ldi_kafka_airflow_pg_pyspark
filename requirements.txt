@@ -1,6 +1,6 @@
 apache-airflow~=2.10.3
 kafka-python~=2.0.2
 psycopg2~=2.9.10
-pyspark~=3.5.3
+pyspark~=3.3.2
 requests~=2.32.3
 text-unidecode==1.3
