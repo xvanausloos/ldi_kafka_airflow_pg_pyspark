@@ -29,6 +29,14 @@ src/spark_pgsql/kafka_pyspark_delta.py
 ```
 NB: Spark version has to match org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.3 version (3.5.3 in this example)
 
+Using 
+```
+pip install parquet-cli
+parq <file name>.parquet --head 10
+``` 
+you can check the content of the 
+parquet files created in `delta-table` folder.
 
+WIP --> test still KO 14.11.24
 
   
