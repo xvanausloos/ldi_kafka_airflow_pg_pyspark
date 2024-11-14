@@ -22,8 +22,14 @@ Thanks to UI create a topic
 
 ### Install Postgres locally (without Docker)
 see dedicated LDI doc.
+Start Postgresql local instance:
+`brew services start postgresql@14`
+
 Check connection to PGADMIN:
-connect to local PG instance: psql -U xaviervanausloos
+connect to local PG instance: 
+```
+psql -d postgres
+```
 
 ### Create and populate PG table
 Run `python scripts/create_table.py` or use `make create-postgres-table`

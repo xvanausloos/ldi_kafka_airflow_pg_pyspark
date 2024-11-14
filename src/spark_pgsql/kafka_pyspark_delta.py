@@ -24,23 +24,20 @@ logging.info(f"Kafka read the stream in topic:{topic_name}")
 # Transform the Kafka stream (e.g., extract the value and cast to String)
 kafka_values_df = kafka_stream.selectExpr("CAST(value AS STRING)")
 
-query = kafka_values_df.writeStream \
-    .format("kafka") \
-    .option("kafka.bootstrap.servers", "localhost:9094") \
-    .option("topic", "output_topic") \
-    .option("checkpointLocation", "/tmp/kafka-to-kafka-checkpoint") \
-    .start()
+# write in another topic
+# query = kafka_values_df.writeStream \
+#     .format("kafka") \
+#     .option("kafka.bootstrap.servers", "localhost:9094") \
+#     .option("topic", "output_topic") \
+#     .option("checkpointLocation", "/tmp/kafka-to-kafka-checkpoint") \
+#     .start()
+
+# Write the transformed stream to a Delta table
+delta_location = "tmp/delta-table"
+checkpoints_location = "tmp/checkpoints"
+query = kafka_values_df.writeStream.format("delta").outputMode("append").option(
+     "checkpointLocation", checkpoints_location
+).start("tmp/delta-table")
 
 # Wait for the termination of the stream
 query.awaitTermination()
-
-# Write the transformed stream to a Delta table
-# delta_location = "tmp/delta-table"
-# checkpoints_location = "tmp/checkpoints"
-# kafka_values.writeStream.format("delta").outputMode("append").option(
-#      "checkpointLocation", checkpoints_location
-# ).start("tmp/delta-table")
-
-#logging.info(f"Stream written in Delta table to {delta_location} ")
-
-
