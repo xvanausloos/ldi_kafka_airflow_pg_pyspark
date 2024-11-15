@@ -22,12 +22,12 @@ export HADOOP_HOME=/opt/homebrew/Cellar/hadoop/3.4.1/bin
 - Run
 ```
 spark-submit \
---packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.2,io.delta:delta-core_2.12:2.2.0 \
+--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0,io.delta:delta-core_2.12:2.2.0 \
 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension" \
 --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog" \
 src/spark_pgsql/kafka_pyspark_delta.py
 ```
-NB: Spark version has to match org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.3 version (3.5.3 in this example)
+NB: Spark version has to match org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0 version (3.3.0 in this example)
 
 Using 
 ```

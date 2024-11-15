@@ -31,6 +31,8 @@ connect to local PG instance:
 psql -d postgres
 ```
 
+You can check tables using PgAdmin app installed locally in your Mac.
+
 ### Create and populate PG table
 Run `python scripts/create_table.py` or use `make create-postgres-table`
 
