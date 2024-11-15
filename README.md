@@ -22,8 +22,16 @@ Thanks to UI create a topic
 
 ### Install Postgres locally (without Docker)
 see dedicated LDI doc.
+Start Postgresql local instance:
+`brew services start postgresql@14`
+
 Check connection to PGADMIN:
-connect to local PG instance: psql -U xaviervanausloos
+connect to local PG instance: 
+```
+psql -d postgres
+```
+
+You can check tables using PgAdmin app installed locally in your Mac.
 
 ### Create and populate PG table
 Run `python scripts/create_table.py` or use `make create-postgres-table`
@@ -60,7 +68,7 @@ Credentials are: airflow/aiflow
 ## Pipeline
 Check Airflow DAG : `kafka_spark_dag`
 
+## Addition of unit tests
+Example: https://medium.com/@sharadblog/unit-testing-pyspark-kafka-streams-14746ca28dfe
 
-
-
-
+See `kafka_pyspark_delta.py`
