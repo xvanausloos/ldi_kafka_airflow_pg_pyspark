@@ -10,4 +10,4 @@ airflow_resources/dags/__pycache__
 src/kafka_client/__pycache__/
 tmp/
 .run/
-
+delta_table/
