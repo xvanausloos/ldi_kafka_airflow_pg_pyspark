@@ -8,3 +8,6 @@ airflow_resources/dags/__pycache__
 **/__pycache__/
 *.py[cod]
 src/kafka_client/__pycache__/
+tmp/
+.run/
+delta_table/
