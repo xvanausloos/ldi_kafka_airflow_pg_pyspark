@@ -72,3 +72,17 @@ Check Airflow DAG : `kafka_spark_dag`
 Example: https://medium.com/@sharadblog/unit-testing-pyspark-kafka-streams-14746ca28dfe
 
 See `kafka_pyspark_delta.py`
+Run unit tests: from venv terminal: `pytest`
+
+One test will run successfully.
+
+## Monitoring Airflow with Grafana
+Resource: https://medium.com/@perkasaid.rio/monitoring-airflow-metrics-with-grafana-29ebb43100a3
+
+In Docker compose add these settings:
+```
+AIRFLOW__SCHEDULER__STATSD_ON: 'true'
+AIRFLOW__SCHEDULER__STATSD_HOST: statsd-exporter
+AIRFLOW__SCHEDULER__STATSD_PORT: 8125
+AIRFLOW__SCHEDULER__STATSD_PREFIX: airflow
+```
