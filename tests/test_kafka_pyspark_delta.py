@@ -3,6 +3,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.streaming import StreamingQuery
 from pyspark.sql import Row
 
+
 @pytest.fixture(scope="session")
 def spark():
     """
@@ -16,11 +17,13 @@ def spark():
         .getOrCreate()
     )
 
+
 def transform_kafka_stream(input_df):
     """
     Function to transform the Kafka stream by casting value to STRING.
     """
     return input_df.selectExpr("CAST(value AS STRING)")
+
 
 def test_kafka_to_delta(spark):
     """
@@ -45,7 +48,7 @@ def test_kafka_to_delta(spark):
     assert transformed_df.schema == expected_schema
 
     # Mock Delta write by writing to a temporary path
-    delta_path =   "delta_table"
+    delta_path = "delta_table"
     transformed_df.write.format("delta").mode("overwrite").save(delta_path)
 
     # Read back the Delta table and verify the content

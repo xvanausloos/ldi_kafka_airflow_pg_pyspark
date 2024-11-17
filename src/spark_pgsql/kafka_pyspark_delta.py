@@ -35,9 +35,12 @@ kafka_values_df = kafka_stream.selectExpr("CAST(value AS STRING)")
 # Write the transformed stream to a Delta table
 delta_location = "tmp/delta-table"
 checkpoints_location = "tmp/checkpoints"
-query = kafka_values_df.writeStream.format("delta").outputMode("append").option(
-     "checkpointLocation", checkpoints_location
-).start("tmp/delta-table")
+query = (
+    kafka_values_df.writeStream.format("delta")
+    .outputMode("append")
+    .option("checkpointLocation", checkpoints_location)
+    .start("tmp/delta-table")
+)
 
 # Wait for the termination of the stream
 query.awaitTermination()
