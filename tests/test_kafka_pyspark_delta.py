@@ -1,48 +1,56 @@
-import unittest
-from unittest.mock import patch
-from pyspark.sql import Row, SparkSession
-from pyspark.sql.streaming import DataStreamWriter
+import pytest
+from pyspark.sql import SparkSession
+from pyspark.sql.streaming import StreamingQuery
+from pyspark.sql import Row
 
-class TestPySparkStreaming(unittest.TestCase):
+@pytest.fixture(scope="session")
+def spark():
+    """
+    Pytest fixture to initialize a SparkSession for testing.
+    """
+    return (
+        SparkSession.builder.master("local[2]")
+        .appName("PySparkUnitTest")
+        .config("spark.sql.shuffle.partitions", "1")
+        .config("spark.jars.packages", "io.delta:delta-core_2.12:2.1.0")
+        .getOrCreate()
+    )
 
-    @classmethod
-    def setUpClass(cls):
-        """Setup Spark session for the tests."""
-        cls.spark = SparkSession.builder \
-            .master("local[1]") \
-            .appName("PySparkStreamingTest") \
-            .getOrCreate()
+def transform_kafka_stream(input_df):
+    """
+    Function to transform the Kafka stream by casting value to STRING.
+    """
+    return input_df.selectExpr("CAST(value AS STRING)")
 
-    def test_kafka_stream_processing(self):
-        """Test Kafka stream processing and Delta table write."""
-        sample_data = [Row(value="test_message_1"), Row(value="test_message_2")]
+def test_kafka_to_delta(spark):
+    """
+    Unit test for the Kafka-to-Delta transformation.
+    """
+    from pyspark.sql.types import StructType, StructField, StringType
 
-        # Create a DataFrame with mocked Kafka input data
-        kafka_df = self.spark.createDataFrame(sample_data)
+    # Mock Kafka input schema
+    schema = StructType([StructField("value", StringType(), True)])
 
-        # Mock the Kafka read stream
-        with patch('pyspark.sql.SparkSession.readStream') as mock_read_stream:
-            mock_read_stream.return_value = kafka_df
+    # Mock input data (simulating Kafka messages)
+    input_data = [Row(value="message1")]
 
-            # Simulate calling the function that reads from Kafka and processes the stream
-            kafka_values = kafka_df.selectExpr("CAST(value AS STRING)")
+    # Create a static DataFrame to simulate Kafka input
+    input_df = spark.createDataFrame(input_data, schema)
 
-            # Mock the write operation
-            with patch.object(DataStreamWriter, 'start') as mock_write_stream:
-                # Perform the write
-                kafka_values.writeStream.format("delta").outputMode("append").start("tmp/delta-table")
+    # Apply transformation
+    transformed_df = transform_kafka_stream(input_df)
 
-                # Assert that the DataFrame was correctly transformed
-                transformed_data = [row['value'] for row in kafka_values.collect()]
-                self.assertEqual(transformed_data, ["test_message_1", "test_message_2"])
+    # Verify the transformed schema
+    expected_schema = StructType([StructField("value", StringType(), True)])
+    assert transformed_df.schema == expected_schema
 
-                # Assert that the write operation was triggered once
-                mock_write_stream.assert_called_once()
+    # Mock Delta write by writing to a temporary path
+    delta_path =   "delta_table"
+    transformed_df.write.format("delta").mode("overwrite").save(delta_path)
 
-    @classmethod
-    def tearDownClass(cls):
-        """Stop the Spark session after the tests."""
-        cls.spark.stop()
+    # Read back the Delta table and verify the content
+    result_df = spark.read.format("delta").load(delta_path)
+    result_data = [row.asDict() for row in result_df.collect()]
+    expected_data = [{"value": "message1"}]
 
-if __name__ == '__main__':
-    unittest.main()
+    assert result_data == expected_data
