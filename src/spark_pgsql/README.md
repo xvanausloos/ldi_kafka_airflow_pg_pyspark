@@ -37,6 +37,20 @@ parq <file name>.parquet --head 10
 you can check the content of the 
 parquet files created in `delta-table` folder.
 
-WIP --> test still KO 14.11.24
+## Unit test 
+For testing streaming with PySpark, To write a unit test for the given PySpark application that reads from Kafka, transforms the stream, and writes to a Delta table, you'll need to simulate the streaming data and verify the outputs. Since PySpark's streaming APIs don't have built-in test utilities 
+like MemoryStream for Kafka sources, we can mock the Kafka input data.
+From terminal in venv run:
+`pytest` 
 
-  
+```
+pytest  
+============================================================================= test session starts ==============================================================================
+platform darwin -- Python 3.9.6, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/xaviervanausloos/projects/ldi_kafka_airflow_pg_pyspark
+collected 1 item                                                                                                                                                               
+
+tests/test_kafka_pyspark_delta.py .                                                                                                                                      [100%]
+
+============================================================================== 1 passed in 8.35s =
+```
