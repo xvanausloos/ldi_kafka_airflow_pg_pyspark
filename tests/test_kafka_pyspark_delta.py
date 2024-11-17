@@ -1,6 +1,5 @@
 import pytest
 from pyspark.sql import SparkSession
-from pyspark.sql.streaming import StreamingQuery
 from pyspark.sql import Row
 
 
