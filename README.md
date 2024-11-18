@@ -126,4 +126,12 @@ Access to Grafana UI:
 `https://localhost:3000`
 Login with default user `grafana` and password `grafana`
 
+Add Prometheus as a data source:
+
+    Navigate to Configuration (⚙️) > Data Sources.
+    Click Add Data Source.
+    Select Prometheus.
+    Enter the Prometheus URL: http://<docker-container-IP>:9090.
+        If both containers are on the same Docker network, you can use the container name: http://prometheus:9090.
+    Click Save & Test to verify the connection.
 
