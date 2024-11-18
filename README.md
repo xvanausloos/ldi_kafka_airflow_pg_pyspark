@@ -7,7 +7,7 @@ Source: https://towardsdatascience.com/end-to-end-data-engineering-system-on-rea
 `python -m .venv venv`
 `source .venv/bin/activate`
 
-## Infrastructure with Docker
+## Kafka infrastructure with Docker
 Before running the kafka service, 
 let’s create the airflow-kafka network using the following command:
 You can run `make create-kafka-infra`
@@ -86,3 +86,44 @@ AIRFLOW__SCHEDULER__STATSD_HOST: statsd-exporter
 AIRFLOW__SCHEDULER__STATSD_PORT: 8125
 AIRFLOW__SCHEDULER__STATSD_PREFIX: airflow
 ```
+Installing Statsd-exporter: this is the bridge between Airflow and Prometheus
+Add a service in the docker-compose file:
+```
+statsd-exporter:
+        image: prom/statsd-exporter
+        container_name: airflow-statsd-exporter
+        command: "--statsd.listen-udp=:8125 --web.listen-address=:9102"
+        ports:
+            - 9102:9102
+            - 8125:8125/udp
+```
+Rebuild the image:
+`make create-airflow-infra`
+
+you can go to http://127.0.0.1:9102 to check metrics that send to statsd-exporter
+
+Addition of Prometheus to Docker compose:
+```
+prometheus:
+    image: prom/prometheus
+    container_name: airflow-prometheus
+    ports:
+        - 9090:9090
+    volumes:
+        - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+```
+Add a file `prometehus.yaml` in `infrastructure\prometheus`
+Run: `make create-airflow-infra`
+
+Open Prometheuse UI: `localhost:9090`
+You can see the Airflow Statsd endpoint in `http://127.0.0.1:9090/targets`
+
+## Grafana install
+Add a new service in `airflow-docker-compose.yaml`
+Run: `make create-airflow-infra`
+
+Access to Grafana UI: 
+`https://localhost:3000`
+Login with default user `grafana` and password `grafana`
+
+
